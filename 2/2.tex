@@ -1,0 +1,342 @@
+\documentclass[UTF8, 13pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+% 取消段首缩进
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+1.
+
+位置:
+\[
+    \begin{aligned}
+        &\text{B相对于\{A\}为} \; \begin{bmatrix} -100 & 200 & 120 \end{bmatrix}^\top,\\
+        &\text{C相对于\{A\}为} \; \begin{bmatrix} 150 & 220 & -120 \end{bmatrix}^\top
+    \end{aligned}
+\]
+
+姿态:
+\[
+    \begin{aligned}
+        {}^A R_B &= 
+            \begin{bmatrix}
+            0 & -1 & 0 \\
+            0 & 0 & 1 \\
+            -1 & 0 & 0
+            \end{bmatrix} \\
+        {}^A R_C &=
+            \begin{bmatrix}
+            0 & 1 & 0 \\
+            0 & 0 & 1 \\
+            1 & 0 & 0
+            \end{bmatrix}
+    \end{aligned}
+\]
+
+方向余弦矩阵为对应旋转变换矩阵转置
+\[
+\begin{aligned}
+    {}^A C_B &= 
+        \begin{bmatrix}
+        0 & 0 & -1 \\
+        -1 & 0 & 0 \\
+        0 & 1 & 0
+        \end{bmatrix} \\
+    {}^A C_C &=
+        \begin{bmatrix}
+        0 & 0 & 1 \\
+        1 & 0 & 0 \\
+        0 & 1 & 0
+        \end{bmatrix}
+\end{aligned}
+\]
+
+\newpage
+
+2.
+\[
+\begin{aligned}
+    {}^a R_b &= R_z(-10^\circ) R_x(25^\circ) R_y(30^\circ) \\
+    {}^b R_c &= R_z(5^\circ) R_x(15^\circ) R_y(20^\circ) \\
+    {}^a R_c &= {}^a R_b \; {}^b R_c \\
+            &= R_z(-10^\circ) R_x(25^\circ) R_y(30^\circ) R_z(5^\circ) R_x(15^\circ) R_y(20^\circ) \\
+            &= \begin{bmatrix}
+                    \cos(-10^\circ) & -\sin(-10^\circ) & 0 \\
+                    \sin(-10^\circ) &  \cos(-10^\circ) & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    1 & 0 & 0 \\
+                    0 & \cos(25^\circ) & -\sin(25^\circ) \\
+                    0 & \sin(25^\circ) & \cos(25^\circ)
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \cos(30^\circ) & 0 & \sin(30^\circ) \\
+                    0 & 1 & 0 \\
+                    -\sin(30^\circ) & 0 & \cos(30^\circ)
+                \end{bmatrix} \\[6pt]
+                &\phantom{=} \;\;
+                \begin{bmatrix}
+                    \cos(5^\circ) & -\sin(5^\circ) & 0 \\
+                    \sin(5^\circ) &  \cos(5^\circ) & 0 \\
+                    0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    1 & 0 & 0 \\
+                    0 & \cos(15^\circ) & -\sin(15^\circ) \\
+                    0 & \sin(15^\circ) & \cos(15^\circ)
+                \end{bmatrix}
+                \begin{bmatrix}
+                    \cos(20^\circ) & 0 & \sin(20^\circ) \\
+                    0 & 1 & 0 \\
+                    -\sin(20^\circ) & 0 & \cos(20^\circ)
+                \end{bmatrix} \\
+            &= \begin{bmatrix}
+                    0.7110 & 0.1875 & 0.6778 \\
+                    0.3531 & 0.7382 & -0.5747 \\
+                    -0.6081 & 0.6480 & 0.4586
+                \end{bmatrix}
+\end{aligned}
+\]
+\vspace{1em}
+
+对应ZXY欧拉角:
+\[
+\begin{aligned}
+    R &= R_z(\alpha) R_x(\beta) R_y(\gamma) \\
+        &= \begin{bmatrix}
+                \cos\alpha \cos\gamma - \sin\alpha \sin\beta \sin\gamma & -\sin\alpha \cos\beta & \cos\alpha \sin\gamma + \sin\alpha \sin\beta \cos\gamma \\
+                \sin\alpha \cos\gamma + \cos\alpha \sin\beta \sin\gamma & \cos\alpha \cos\beta & \sin\alpha \sin\gamma - \cos\alpha \sin\beta \cos\gamma \\
+                -\cos\beta \sin\gamma & \sin\beta & \cos\beta \cos\gamma
+            \end{bmatrix} \\
+\end{aligned}
+\]
+
+解得:
+\[
+\begin{aligned}
+    &\beta = \arcsin(0.6480) = 40^\circ \; \text{或} \; \beta = 180^\circ - 40^\circ = 140^\circ \\
+    &\alpha = \arctan2(-0.1875, 0.7382) = -14^\circ \; \text{或} \; arctan2(0.1875, -0.7382) = 166^\circ \\
+    &\gamma = \arctan2(0.6081, 0.4586) = 53^\circ \; \text{或} \; \arctan2(-0.6081, -0.4586) = -127^\circ
+\end{aligned}
+\]
+\vspace{1em}
+
+对应XYX欧拉角:
+\[
+\begin{aligned}
+    R &= R_x(\alpha) R_y(\beta) R_x(\gamma) \\
+        &=  \begin{bmatrix}
+                \cos\beta & \sin\beta \sin\gamma & \sin\beta \cos\gamma \\
+                \sin\alpha \sin\beta & \cos\alpha \cos\gamma - \sin\alpha \cos\beta \sin\gamma & -\cos\alpha \sin\gamma - \sin\alpha \cos\beta \cos\gamma \\
+                -\cos\alpha \sin\beta & \sin\alpha \cos\gamma + \cos\alpha \cos\beta \sin\gamma & -\sin\alpha \sin\gamma + \cos\alpha \cos\beta \cos\gamma
+            \end{bmatrix} \\
+\end{aligned}
+\]
+
+解得：
+\[
+\begin{aligned}
+    &\beta = \pm \arccos(0.7110) = 45^\circ \\
+    &\alpha = \arctan2(0.3531, 0.6081) = 30^\circ \; \text{或} \; \arctan2(-0.3531, -0.6081) = -150^\circ \\
+    &\gamma = \arctan2(0.1875, 0.6778) = 15^\circ \; \text{或} \; \arctan2(-0.1875, -0.6778) = -165^\circ
+\end{aligned}
+\]
+\vspace{1em}
+
+即\{c\}相对于\{a\}的ZXY欧拉角为
+\[
+\begin{bmatrix}
+    -14^\circ \\ 40^\circ \\ 53^\circ
+\end{bmatrix} \;
+\begin{bmatrix}
+    166^\circ \\ 140^\circ \\ -127^\circ
+\end{bmatrix}
+\]
+XYX欧拉角为
+\[
+\begin{bmatrix}
+    30^\circ \\ 45^\circ \\ 15^\circ
+\end{bmatrix} \;
+\begin{bmatrix}
+    -150^\circ \\ -45^\circ \\ -165^\circ
+\end{bmatrix}
+\]
+
+\newpage
+
+3.
+
+(1)
+\[
+\begin{aligned}
+    {}^a R_b &= R_y(20^\circ) R_x(-30^\circ) R_y(40^\circ) \\
+            &=
+            \begin{bmatrix}
+                \cos(20^\circ) & 0 & \sin(20^\circ) \\
+                0 & 1 & 0 \\
+                -\sin(20^\circ) & 0 & \cos(20^\circ)
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & \cos(-30^\circ) & -\sin(-30^\circ) \\
+                0 & \sin(-30^\circ) & \cos(-30^\circ)
+            \end{bmatrix}
+            \begin{bmatrix}
+                \cos(40^\circ) & 0 & \sin(40^\circ) \\
+                0 & 1 & 0 \\
+                -\sin(40^\circ) & 0 & \cos(40^\circ)
+            \end{bmatrix} \\
+            &=
+            \begin{bmatrix}
+                0.5295 & -0.1710 &  0.8309 \\
+                -0.3214 &  0.8660 &  0.3830 \\
+                -0.7851 & -0.4698 &  0.4036
+            \end{bmatrix} \\
+    {}^a T_b &= 
+        \begin{bmatrix}
+            0.5295 & -0.1710 &  0.8309 & -100 \\
+            -0.3214 &  0.8660 &  0.3830 & 400 \\
+            -0.7851 & -0.4698 &  0.4036 & 150 \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+\end{aligned}
+\]
+\vspace{1em}
+
+(2)
+\[
+\begin{aligned}
+    {}^b \overline{p}_b &=  \begin{bmatrix}
+                    -20 \\ 30 \\ -30 \\ 1
+                \end{bmatrix} \\
+    {}^a \overline{p}_a &= {}^a T_b \; {}^b \overline{p}_b \\
+            &=
+            \begin{bmatrix}
+                0.5295 & -0.1710 &  0.8309 & -100 \\
+                -0.3214 &  0.8660 &  0.3830 & 400 \\
+                -0.7851 & -0.4698 &  0.4036 & 150 \\
+                0 & 0 & 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                -20 \\ 30 \\ -30 \\ 1
+            \end{bmatrix} \\
+            &=
+            \begin{bmatrix}
+                -140.65 \\ 420.92 \\ 139.50 \\ 1
+            \end{bmatrix}
+\end{aligned}
+\]
+% \vspace{1em}
+
+(3)
+\[
+    \omega = \begin{bmatrix}
+                0 \\ \dot{\alpha} \\ 0
+            \end{bmatrix} 
+            + R_y(20^\circ) \begin{bmatrix}
+                \dot{\beta} \\ 0 \\ 0
+            \end{bmatrix}
+            + R_y(20^\circ) R_x(-30^\circ) \begin{bmatrix}
+                0 \\ \dot{\gamma} \\ 0
+            \end{bmatrix} \\
+\]
+其中
+\[
+\begin{aligned}
+    R_y(20^\circ) &= 
+        \begin{bmatrix}
+            \cos(20^\circ) & 0 & \sin(20^\circ) \\
+            0 & 1 & 0 \\
+            -\sin(20^\circ) & 0 & \cos(20^\circ)
+        \end{bmatrix} \\
+        &=
+        \begin{bmatrix}
+            0.9397 & 0 & 0.3420 \\
+            0 & 1 & 0 \\
+            -0.3420 & 0 & 0.9397
+        \end{bmatrix} \\
+\end{aligned} 
+\]
+\[
+\begin{aligned}
+    R_y(20^\circ) R_x(-30^\circ) &=
+        \begin{bmatrix}
+            \cos(20^\circ) & 0 & \sin(20^\circ) \\
+            0 & 1 & 0 \\
+            -\sin(20^\circ) & 0 & \cos(20^\circ)
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos(-30^\circ) & -\sin(-30^\circ) \\
+            0 & \sin(-30^\circ) & \cos(-30^\circ)
+        \end{bmatrix} \\
+        &=
+        \begin{bmatrix}
+            0.9397 & -0.1710 & 0.2962 \\
+            0 & 0.8660 & 0.5000 \\
+            -0.3420 & -0.4698 & 0.8138
+        \end{bmatrix} \\
+\end{aligned}
+\]
+
+代入得
+\[
+\begin{aligned}
+    \omega &=
+        \begin{bmatrix}
+            0 \\ \dot{\alpha} \\ 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0.9397 & 0 & 0.3420 \\
+            0 & 1 & 0 \\
+            -0.3420 & 0 & 0.9397
+        \end{bmatrix}
+        \begin{bmatrix}
+            \dot{\beta} \\ 0 \\ 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0.9397 & -0.1710 & 0.2962 \\
+            0 & 0.8660 & 0.5000 \\
+            -0.3420 & -0.4698 & 0.8138
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\ \dot{\gamma} \\ 0
+        \end{bmatrix} \\
+        &= 
+        \begin{bmatrix}
+            0.9397\dot{\beta} - 0.1710\dot{\gamma} \\
+            \dot{\alpha} + 0.8660\dot{\gamma} \\
+            -0.3420\dot{\beta} - 0.4698\dot{\gamma}
+        \end{bmatrix}
+        = \begin{bmatrix}
+            5 \\ 10 \\ -8
+        \end{bmatrix}
+\end{aligned}
+\]
+
+解得
+\[
+\begin{cases}
+    \dot{\alpha} = -0.0597 \\
+    \dot{\beta} = 7.4347 \\
+    \dot{\gamma} = 11.6163
+\end{cases}
+\]
+
+即
+\[
+\dot{\Psi} = \begin{bmatrix}
+    -0.0597 \\ 7.4347 \\ 11.6163
+\end{bmatrix}
+\]
+% \vspace{1em}
+
+(4)
+\(\beta = 0^\circ \) 或 \(\beta = 180^\circ\)时，YXY欧拉角姿态奇异
+
+\end{document}

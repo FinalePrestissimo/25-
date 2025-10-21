@@ -1,0 +1,251 @@
+\documentclass[UTF8, 13pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{physics}
+
+% 取消段首缩进
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+1.
+\[
+\Psi = \begin{bmatrix}
+        \alpha \\
+        \beta \\
+        \gamma
+        \end{bmatrix}
+\]
+则有
+\[
+\begin{aligned}
+    \omega &= \begin{bmatrix}
+                0 \\
+                0 \\
+                \dot{\alpha}
+            \end{bmatrix}
+            + R_z(\alpha)
+            \begin{bmatrix}
+                0 \\
+                \dot{\beta} \\
+                0
+            \end{bmatrix}
+            + R_z(\alpha)R_y(\beta)
+            \begin{bmatrix}
+                \dot{\gamma} \\
+                0 \\
+                0
+            \end{bmatrix} \\
+    &= \begin{bmatrix}
+        0 \\
+        0 \\
+        \dot{\alpha}
+        \end{bmatrix}
+        + \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0 \\
+            \sin\alpha & \cos\alpha & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\
+            \dot{\beta} \\
+            0
+        \end{bmatrix}
+        + \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0 \\
+            \sin\alpha & \cos\alpha & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            \cos\beta & 0 & \sin\beta \\
+            0 & 1 & 0 \\
+            -\sin\beta & 0 & \cos\beta
+        \end{bmatrix}
+        \begin{bmatrix}
+            \dot{\gamma} \\
+            0 \\
+            0 
+        \end{bmatrix} \\
+    &= \begin{bmatrix}
+        0 \\
+        0 \\
+        1
+        \end{bmatrix} \dot{\alpha}
+        + \begin{bmatrix}
+            -\sin\alpha \\
+            \cos\alpha \\
+            0
+        \end{bmatrix} \dot{\beta}
+        + \begin{bmatrix}
+            \cos\alpha \cos\beta \\
+            \sin\alpha \cos\beta \\
+            -\sin\beta
+        \end{bmatrix} \dot{\gamma} \\
+    &= \begin{bmatrix}
+        0 & -\sin\alpha & \cos\alpha \cos\beta \\
+        0 & \cos\alpha & \sin\alpha \cos\beta \\
+        1 & 0 & -\sin\beta
+        \end{bmatrix} \dot{\Psi} \\
+\end{aligned}
+\]
+
+当\(\beta \neq 90^\circ\)时
+\[
+\begin{aligned}
+    \Psi &= \begin{bmatrix}
+        0 & -\sin\alpha & \cos\alpha \cos\beta \\
+        0 & \cos\alpha & \sin\alpha \cos\beta \\
+        1 & 0 & -\sin\beta
+        \end{bmatrix}^{-1} \omega \\
+    &= \begin{bmatrix}
+            \cos\alpha \tan\beta & \sin\alpha \tan\beta & 1 \\
+            -\sin\alpha & \cos\alpha & 0 \\
+            \frac{\cos\alpha}{\cos\beta} & \frac{\sin\alpha}{\cos\beta} & 0
+        \end{bmatrix} \omega \\
+\end{aligned}
+\]
+
+当\(\beta = 90^\circ\)时，ZYX欧拉角奇异。
+\newpage
+
+2.
+\[
+\begin{aligned}
+    \omega &= \begin{bmatrix}
+                \dot{\alpha} \\
+                0 \\
+                0
+            \end{bmatrix}
+            + R_x(20^\circ)
+            \begin{bmatrix}
+                0 \\
+                \dot{\beta} \\
+                0
+            \end{bmatrix}
+            + R_x(20^\circ)R_y(-10^\circ)
+            \begin{bmatrix}
+                0 \\
+                0 \\
+                \dot{\gamma}
+            \end{bmatrix} \\
+    &= \begin{bmatrix}
+        \dot{\alpha} \\
+        0 \\
+        0
+        \end{bmatrix}
+        + \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos20^\circ & -\sin20^\circ \\
+            0 & \sin20^\circ & \cos20^\circ
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\
+            \dot{\beta} \\
+            0
+        \end{bmatrix}
+        + \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos20^\circ & -\sin20^\circ \\
+            0 & \sin20^\circ & \cos20^\circ
+        \end{bmatrix}
+        \begin{bmatrix}
+            \cos-10^\circ & 0 & \sin-10^\circ \\
+            0 & 1 & 0 \\
+            -\sin-10^\circ & 0 & \cos-10^\circ
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 \\
+            0 \\
+            \dot{\gamma}
+        \end{bmatrix} \\
+    &= \begin{bmatrix}
+        1 \\
+        0 \\
+        0
+        \end{bmatrix} \dot{\alpha}
+        + \begin{bmatrix}
+            0 \\
+            \cos20^\circ \\
+            \sin20^\circ
+        \end{bmatrix} \dot{\beta}
+        + \begin{bmatrix}
+            -\sin10^\circ \\
+            -\sin20^\circ \cos10^\circ \\
+            \cos20^\circ \cos10^\circ
+        \end{bmatrix} \dot{\gamma} \\
+    &= \begin{bmatrix}
+        1 & 0 & -\sin10^\circ \\
+        0 & \cos20^\circ & -\sin20^\circ \cos10^\circ \\
+        0 & \sin20^\circ & \cos20^\circ \cos10^\circ
+    \end{bmatrix} \dot{\Psi} \\
+    \Psi &= \begin{bmatrix}
+            1 & 0 & -\sin10^\circ \\
+            0 & \cos20^\circ & -\sin20^\circ \cos10^\circ \\
+            0 & \sin20^\circ & \cos20^\circ \cos10^\circ
+        \end{bmatrix}^{-1} \omega \\
+    &= \begin{bmatrix}
+            1 & -\sin20^\circ \tan10^\circ & \cos20^\circ \tan10^\circ \\
+            0 & \cos20^\circ & \sin20^\circ \\
+            0 & -\frac{\sin20^\circ}{\cos10^\circ} & \frac{\cos20^\circ}{\cos10^\circ}
+        \end{bmatrix}
+        \begin{bmatrix}
+            3 \\
+            -5 \\
+            8
+        \end{bmatrix} \\
+    &= \begin{bmatrix}
+        4.627^\circ /s \\
+        -1.962^\circ /s \\
+        9.4533^\circ /s
+        \end{bmatrix} \\
+\end{aligned}
+\]
+\newpage
+
+3.
+(1)
+由题1可知
+\[
+J_{Euler, ZYX} = \begin{bmatrix}
+                    0 & -\sin\alpha & \cos\alpha \cos\beta \\
+                    0 & \cos\alpha & \sin\alpha \cos\beta \\
+                    1 & 0 & -\sin\beta
+                \end{bmatrix}
+\]
+\[
+\begin{aligned}
+    e &= J_{Euler, ZYX} \Delta \Psi
+    = \begin{bmatrix}
+            0 & -\sin\alpha_c & \cos\alpha_c \cos\beta_c \\
+            0 & \cos\alpha_c & \sin\alpha_c \cos\beta_c \\
+            1 & 0 & -\sin\beta_c
+        \end{bmatrix}
+        \begin{bmatrix}
+            \alpha_d - \alpha_c \\
+            \beta_d - \beta_c \\
+            \gamma_d - \gamma_c
+        \end{bmatrix} \\
+    &= \begin{bmatrix}
+            -\sin\alpha_c (\beta_d - \beta_c) + \cos\alpha_c \cos\beta_c (\gamma_d - \gamma_c) \\
+            \cos\alpha_c (\beta_d - \beta_c) + \sin\alpha_c \cos\beta_c (\gamma_d - \gamma_c) \\
+            (\alpha_d - \alpha_c) - \sin\beta_c (\gamma_d - \gamma_c)
+        \end{bmatrix} \\
+\end{aligned}
+\]
+
+(2)
+\[
+\omega = J_{Euler, ZYX} \dot{\Psi}
+\]
+则有
+\[
+\dot{e} = J_{Euler, ZYX} \Delta\dot{\Psi} = J_{Euler, ZYX} \Delta \omega
+\]
+故控制方程为
+\[
+\begin{aligned}
+    \tau &= K_{pp}e + K_{pi}\int e \dd t + K_{pd}\dot{e} \\
+        &= K_{pp} J_{Euler, ZYX} \Delta \Psi + K_{pi} J_{Euler, ZYX} \int \Delta \Psi \dd t + K_{pd} J_{Euler, ZYX} \Delta \omega
+\end{aligned}
+\]
+\end{document}
