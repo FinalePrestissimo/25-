@@ -1,0 +1,93 @@
+\documentclass[UTF8, 13pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{physics}
+
+% 取消段首缩进
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+1.
+(1)
+由于
+\[
+{}^0 J = \begin{bmatrix}
+            {}^0 R_n & 0 \\
+            0 & {}^0 R_n
+        \end{bmatrix} {}^n J
+\]
+其中\({}^0 R_n\)为正交矩阵，故
+\[
+\begin{aligned}
+    {}^n J &= \begin{bmatrix}
+            {}^0 R_n & 0 \\
+            0 & {}^0 R_n
+            \end{bmatrix}^{-1} 
+            {}^0 J \\
+    &= \begin{bmatrix}
+            {}^0 R_n^{-1} & 0 \\
+            0 & {}^0 R_n^{-1}
+        \end{bmatrix} {}^0 J
+    &= \begin{bmatrix}
+            {}^0 R_n^T & 0 \\
+            0 & {}^0 R_n^T
+        \end{bmatrix} {}^0 J
+\end{aligned}
+\]
+
+下面求解基座雅可比矩阵\({}^0J\)
+
+基于D-H参数，求得各关节齐次变换矩阵如下：
+\[
+\begin{aligned}
+    {}^0 T_1 &= \begin{bmatrix}
+                    \cos\theta_1 & -\sin\theta_1\cos\alpha_1 & \sin\theta_1\sin\alpha_1 & a_1\cos\theta_1 \\
+                    \sin\theta_1 & \cos\theta_1\cos\alpha_1 & -\cos\theta_1\sin\alpha_1 & a_1\sin\theta_1 \\
+                    0 & \sin\alpha_1 & \cos\alpha_1 & d_1 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^1 T_2 &= \begin{bmatrix}
+                    \cos\theta_2 & -\sin\theta_2\cos\alpha_2 & \sin\theta_2\sin\alpha_2 & a_2\cos\theta_2 \\
+                    \sin\theta_2 & \cos\theta_2\cos\alpha_2 & -\cos\theta_2\sin\alpha_2 & a_2\sin\theta_2 \\
+                    0 & \sin\alpha_2 & \cos\alpha_2 & d_2 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^2 T_3 &= \begin{bmatrix}
+                   \cos\theta_3 & -\sin\theta_3\cos\alpha_3 & \sin\theta_3\sin\alpha_3 & a_3\cos\theta_3 \\
+                   \sin\theta_3 & \cos\theta_3\cos\alpha_3 & -\cos\theta_3\sin\alpha_3 & a_3\sin\theta_3 \\
+                   0 & \sin\alpha_3 & \cos\alpha_3 & d_3 \\
+                   0 & 0 & 0 & 1
+               \end{bmatrix} \\
+\end{aligned}
+\]
+
+故可构造得雅可比矩阵各分块为
+\[
+\begin{aligned}
+    {}^0 J_1 &= \begin{bmatrix}
+                    \xi_1 \times ({}^0 p_3 - {}^0 P_0) \\ \xi_1
+                \end{bmatrix} \\
+            &= \begin{bmatrix}
+                    \begin{bmatrix}
+                        -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                    \end{bmatrix} \times
+                    \begin{bmatrix}
+                        0.5 \cos\theta_2 + 0.5 \cos(\theta_2 + \theta_3) \\
+                        0.5 \sin\theta_2 + 0.5 \sin(\theta_2 + \theta_3) \\
+                        0.3
+                    \end{bmatrix} \\
+                    \begin{bmatrix}
+                        0 \\ 0 \\ 1
+                    \end{bmatrix}
+                \end{bmatrix} \\
+    {}^0 J_2 &= \begin{bmatrix}
+                    \xi_2 \times ({}^0 p_3 - {}^0 P_1) \\ \xi_2
+                \end{bmatrix} \\
+    {}^0 J_3 &= \begin{bmatrix}
+                    \xi_3 \times ({}^0 p_3 - {}^0 P_2) \\ \xi_3
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+\end{document} 
