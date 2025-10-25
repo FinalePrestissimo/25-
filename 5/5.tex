@@ -42,52 +42,299 @@
 \[
 \begin{aligned}
     {}^0 T_1 &= \begin{bmatrix}
-                    \cos\theta_1 & -\sin\theta_1\cos\alpha_1 & \sin\theta_1\sin\alpha_1 & a_1\cos\theta_1 \\
-                    \sin\theta_1 & \cos\theta_1\cos\alpha_1 & -\cos\theta_1\sin\alpha_1 & a_1\sin\theta_1 \\
-                    0 & \sin\alpha_1 & \cos\alpha_1 & d_1 \\
+                    \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+                    \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+                    0 & -1 & 0 & d_1 \\
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
     {}^1 T_2 &= \begin{bmatrix}
-                    \cos\theta_2 & -\sin\theta_2\cos\alpha_2 & \sin\theta_2\sin\alpha_2 & a_2\cos\theta_2 \\
-                    \sin\theta_2 & \cos\theta_2\cos\alpha_2 & -\cos\theta_2\sin\alpha_2 & a_2\sin\theta_2 \\
-                    0 & \sin\alpha_2 & \cos\alpha_2 & d_2 \\
+                    \cos\theta_2 & -\sin\theta_2 & 0 & a_2\cos\theta_2 \\
+                    \sin\theta_2 & \cos\theta_2 & 0 & a_2\sin\theta_2 \\
+                    0 & 0 & 1 & 0 \\
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
     {}^2 T_3 &= \begin{bmatrix}
-                   \cos\theta_3 & -\sin\theta_3\cos\alpha_3 & \sin\theta_3\sin\alpha_3 & a_3\cos\theta_3 \\
-                   \sin\theta_3 & \cos\theta_3\cos\alpha_3 & -\cos\theta_3\sin\alpha_3 & a_3\sin\theta_3 \\
-                   0 & \sin\alpha_3 & \cos\alpha_3 & d_3 \\
+                   \cos\theta_3 & -\sin\theta_3 & 0 & a_3\cos\theta_3 \\
+                   \sin\theta_3 & \cos\theta_3 & 0 & a_3\sin\theta_3 \\
+                   0 & 0 & 1 & 0 \\
                    0 & 0 & 0 & 1
                \end{bmatrix} \\
 \end{aligned}
 \]
 
-故可构造得雅可比矩阵各分块为
+进一步可计算得：
 \[
 \begin{aligned}
-    {}^0 J_1 &= \begin{bmatrix}
-                    \xi_1 \times ({}^0 p_3 - {}^0 P_0) \\ \xi_1
+    {}^0 T_1 &= \begin{bmatrix}
+                    \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+                    \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+                    0 & -1 & 0 & d_1 \\
+                    0 & 0 & 0 & 1
                 \end{bmatrix} \\
-            &= \begin{bmatrix}
-                    \begin{bmatrix}
-                        -\sin\theta_1 \\ \cos\theta_1 \\ 0
-                    \end{bmatrix} \times
-                    \begin{bmatrix}
-                        0.5 \cos\theta_2 + 0.5 \cos(\theta_2 + \theta_3) \\
-                        0.5 \sin\theta_2 + 0.5 \sin(\theta_2 + \theta_3) \\
-                        0.3
-                    \end{bmatrix} \\
-                    \begin{bmatrix}
-                        0 \\ 0 \\ 1
-                    \end{bmatrix}
+    {}^0 T_2 &= \begin{bmatrix}
+                    \cos\theta_1\cos\theta_2 & -\cos\theta_1\sin\theta_2 & -\sin\theta_1 & a_2\cos\theta_1\cos\theta_2 \\
+                    \sin\theta_1\cos\theta_2 & -\sin\theta_1\sin\theta_2 & \cos\theta_1 & a_2\sin\theta_1\cos\theta_2 \\
+                    -\sin\theta_2 & -\cos\theta_2 & 0 & d_1 - a_2\sin\theta_2 \\
+                    0 & 0 & 0 & 1
                 \end{bmatrix} \\
-    {}^0 J_2 &= \begin{bmatrix}
-                    \xi_2 \times ({}^0 p_3 - {}^0 P_1) \\ \xi_2
-                \end{bmatrix} \\
-    {}^0 J_3 &= \begin{bmatrix}
-                    \xi_3 \times ({}^0 p_3 - {}^0 P_2) \\ \xi_3
+    {}^0 T_3 &= \begin{bmatrix}
+                    \cos\theta_1\cos(\theta_2+\theta_3) & -\cos\theta_1\sin(\theta_2+\theta_3) & -\sin\theta_1 & \cos\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    \sin\theta_1\cos(\theta_2+\theta_3) & -\sin\theta_1\sin(\theta_2+\theta_3) & \cos\theta_1 & \sin\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    -\sin(\theta_2+\theta_3) & -\cos(\theta_2+\theta_3) & 0 & d_1 - a_2\sin\theta_2 - a_3\sin(\theta_2+\theta_3) \\
+                    0 & 0 & 0 & 1
                 \end{bmatrix} \\
 \end{aligned}
+\]
+
+故构造基座雅可比矩阵所需各参数如下：
+\[
+\begin{aligned}
+    {}^0 \xi_0 &= \begin{bmatrix}
+                    0 \\ 0 \\ 1
+                \end{bmatrix} \quad
+    {}^0 \xi_1 = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \quad
+    {}^0 \xi_2 = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \\
+    {}^0 p_0 &= \begin{bmatrix}
+                    0 \\ 0 \\ 0
+                \end{bmatrix} \quad
+    {}^0 p_1 = \begin{bmatrix}
+                    0 \\ 0 \\ d_1
+                \end{bmatrix} \quad
+    {}^0 p_2 = \begin{bmatrix}
+                    a_2\cos\theta_1\cos\theta_2 \\
+                    a_2\sin\theta_1\cos\theta_2 \\
+                    d_1 - a_2\sin\theta_2
+                \end{bmatrix} \\
+    {}^0 p_3 &= \begin{bmatrix}
+                    \cos\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    \sin\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    d_1 - a_2\sin\theta_2 - a_3\sin(\theta_2+\theta_3)
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+构造得基座雅可比矩阵各分块如下：
+\[
+\begin{aligned}
+    {}^0 J_{v1} &= {}^0\xi_0 \times ({}^0 p_3 - {}^0 p_0)
+                = \begin{bmatrix}
+                    -\sin\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    \cos\theta_1\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big) \\
+                    0
+                \end{bmatrix} \\
+    {}^0 J_{v2} &= {}^0\xi_1 \times ({}^0 p_3 - {}^0 p_1)
+                = \begin{bmatrix}
+                    -\cos\theta_1\big(a_2\sin\theta_2 + a_3\sin(\theta_2+\theta_3)\big) \\
+                    -\sin\theta_1\big(a_2\sin\theta_2 + a_3\sin(\theta_2+\theta_3)\big) \\
+                    -\big(a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)\big)
+                \end{bmatrix} \\
+    {}^0 J_{v3} &= {}^0\xi_2 \times ({}^0 p_3 - {}^0 p_2)
+                = \begin{bmatrix}
+                    -a_3\cos\theta_1\sin(\theta_2+\theta_3) \\
+                    -a_3\sin\theta_1\sin(\theta_2+\theta_3) \\
+                    -a_3\cos(\theta_2+\theta_3)
+                \end{bmatrix} \\
+    {}^0 J_{\omega1} &= {}^0\xi_0
+                = \begin{bmatrix}
+                    0 \\ 0 \\ 1
+                \end{bmatrix} \\
+    {}^0 J_{\omega2} &= {}^0\xi_1
+                = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \\
+    {}^0 J_{\omega3} &= {}^0\xi_2
+                = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+为转换到末端雅可比矩阵，计算可得：
+\[
+\begin{aligned}
+    {}^0 R_n^{\top} \; {}^0 J_{v1} &= \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3)
+                \end{bmatrix} \\
+    {}^0 R_n^{\top} \; {}^0 J_{v2} &= \begin{bmatrix}
+                    a_2\sin\theta_3 \\
+                    a_2\cos\theta_3 + a_3 \\
+                    0
+                \end{bmatrix} \\
+    {}^0 R_n^{\top} \; {}^0 J_{v3} &= \begin{bmatrix}
+                    0 \\
+                    a_3 \\
+                    0
+                \end{bmatrix} \\
+    {}^0 R_n^{\top} \; {}^0 J_{\omega1} &= \begin{bmatrix}
+                        -\sin(\theta_2+\theta_3) \\
+                        -\cos(\theta_2+\theta_3) \\
+                        0
+                    \end{bmatrix} \\
+    {}^0 R_n^{\top} \; {}^0 J_{\omega2} &= \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    1
+                \end{bmatrix} \\
+    {}^0 R_n^{\top} \; {}^0 J_{\omega3} &= \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    1
+                \end{bmatrix}
+\end{aligned}
+\]
+
+最终可得末端雅可比矩阵为
+\[
+{}^n J =
+\begin{bmatrix}
+    0 & a_2\sin\theta_3 & 0 \\
+    0 & a_2\cos\theta_3 + a_3 & a_3 \\
+    a_2\cos\theta_2 + a_3\cos(\theta_2+\theta_3) & 0 & 0 \\
+    -\sin(\theta_2+\theta_3) & 0 & 0 \\
+    -\cos(\theta_2+\theta_3) & 0 & 0 \\
+    0 & 1 & 1
+\end{bmatrix}
+\]
+
+
+2.
+(1)
+基于D-H参数，求得各关节齐次变换矩阵如下：
+\[
+\begin{aligned}
+    {}^0 T_1 &= \begin{bmatrix}
+                    \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+                    \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+                    0 & -1 & 0 & d_1 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^1 T_2 &= \begin{bmatrix}
+                    \cos(\theta_2 - 90^\circ) & 0 & -\sin(\theta_2 - 90^\circ) & 0 \\
+                    \sin(\theta_2 - 90^\circ) & 0 & \cos(\theta_2 - 90^\circ) & 0 \\
+                    0 & -1 & 0 & 0 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+            &= \begin{bmatrix}
+                    \sin\theta_2 & 0 & \cos\theta_2 & 0 \\
+                    -\cos\theta_2 & 0 & \sin\theta_2 & 0 \\
+                    0 & -1 & 0 & 0 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^2 T_3 &= \begin{bmatrix}
+                    \cos\theta_3 & -\sin\theta_3 & 0 & 0 \\
+                    \sin\theta_3 & \cos\theta_3 & 0 & 0 \\
+                    0 & 0 & 1 & d_3 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+进一步可计算得：
+\[
+\begin{aligned}
+    {}^0 T_1 &= \begin{bmatrix}
+                    \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+                    \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+                    0 & -1 & 0 & d_1 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^0 T_2 &= \begin{bmatrix}
+                    \cos\theta_1\sin\theta_2 & \sin\theta_1 & \cos\theta_1\cos\theta_2 & 0 \\
+                    \sin\theta_1\sin\theta_2 & -\cos\theta_1 & \sin\theta_1\cos\theta_2 & 0 \\
+                    \cos\theta_2 & 0 & -\sin\theta_2 & d_1 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^0 T_3 &= \begin{bmatrix}
+                    c\theta_1\, s\theta_2\, c\theta_3 + s\theta_1\, s\theta_3 & -c\theta_1\, s\theta_2\, s\theta_3 + s\theta_1\, c\theta_3 & c\theta_1\, c\theta_2 & d_3\, c\theta_1\, c\theta_2 \\
+                    s\theta_1\, s\theta_2\, c\theta_3 - c\theta_1\, s\theta_3 & -s\theta_1\, s\theta_2\, s\theta_3 - c\theta_1\, c\theta_3 & s\theta_1\, c\theta_2 & d_3\, s\theta_1\, c\theta_2 \\
+                    c\theta_2\, c\theta_3 & -c\theta_2\, s\theta_3 & -s\theta_2 & d_1 - d_3\, s\theta_2 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix}
+\end{aligned}
+\]
+
+故构造基座雅可比矩阵所需各参数如下：
+\[
+\begin{aligned}
+    {}^0 \xi_0 &= \begin{bmatrix}
+                    0 \\ 0 \\ 1
+                \end{bmatrix} \quad
+    {}^0 \xi_1 = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \quad
+    {}^0 \xi_2 = \begin{bmatrix}
+                    \cos\theta_1 \cos\theta_2 \\ \sin\theta_1 \cos\theta_2 \\ -\sin\theta_2
+                \end{bmatrix} \\
+    {}^0 p_0 &= \begin{bmatrix}
+                    0 \\ 0 \\ 0
+                \end{bmatrix} \quad
+    {}^0 p_1 = \begin{bmatrix}
+                    0 \\ 0 \\ d_1
+                \end{bmatrix} \quad
+    {}^0 p_2 = \begin{bmatrix}
+                    0 \\ 0 \\ d_1
+                \end{bmatrix} \quad
+    {}^0 p_3 = \begin{bmatrix}
+                    d_3 \cos\theta_1 \cos\theta_2 \\
+                    d_3 \sin\theta_1 \cos\theta_2 \\
+                    d_1 - d_3 \sin\theta_2
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+构造得基座雅可比矩阵各分块如下：
+\[
+\begin{aligned}
+    {}^0 J_{v1} &= {}^0\xi_0 \times ({}^0 p_3 - {}^0 p_0)
+                = \begin{bmatrix}
+                    -d_3 \sin\theta_1 \cos\theta_2 \\
+                    d_3 \cos\theta_1 \cos\theta_2 \\
+                    0
+                \end{bmatrix} \\
+    {}^0 J_{v2} &= {}^0\xi_1 \times ({}^0 p_3 - {}^0 p_1)
+                = \begin{bmatrix}
+                    -d_3 \cos\theta_1 \sin\theta_2 \\
+                    -d_3 \sin\theta_1 \sin\theta_2 \\
+                    -d_3 \cos\theta_2
+                \end{bmatrix} \\
+    {}^0 J_{v3} &= {}^0\xi_2 \times ({}^0 p_3 - {}^0 p_2)
+                = \begin{bmatrix}
+                    0 \\
+                    0 \\
+                    0
+                \end{bmatrix} \\
+    {}^0 J_{\omega1} &= {}^0\xi_0
+                = \begin{bmatrix}
+                    0 \\ 0 \\ 1
+                \end{bmatrix} \\
+    {}^0 J_{\omega2} &= {}^0\xi_1
+                = \begin{bmatrix}
+                    -\sin\theta_1 \\ \cos\theta_1 \\ 0
+                \end{bmatrix} \\
+    {}^0 J_{\omega3} &= {}^0\xi_2
+                = \begin{bmatrix}
+                    \cos\theta_1 \cos\theta_2 \\ \sin\theta_1 \cos\theta_2 \\ -\sin\theta_2
+                \end{bmatrix} \\
+\end{aligned}
+\]
+
+最终可得基座雅可比矩阵为
+\[
+{}^0 J =
+\begin{bmatrix}
+    -d_3 \sin\theta_1 \cos\theta_2 & -d_3 \cos\theta_1 \sin\theta_2 & 0 \\
+    d_3 \cos\theta_1 \cos\theta_2 & -d_3 \sin\theta_1 \sin\theta_2 & 0 \\
+    0 & -d_3 \cos\theta_2 & 0 \\
+    0 & -\sin\theta_1 & \cos\theta_1 \cos\theta_2 \\
+    0 & \cos\theta_1 & \sin\theta_1 \cos\theta_2 \\
+    1 & 0 & -\sin\theta_2
+\end{bmatrix}
 \]
 
 \end{document} 
