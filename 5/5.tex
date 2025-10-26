@@ -203,6 +203,74 @@
 \]
 
 
+(2)
+将\(\theta_1 = 30^\circ, \theta_2 = 50^\circ, \theta_3 = 20^\circ\)代入雅可比矩阵表达式得：
+\[
+\begin{aligned}
+{}^n J_v &= \begin{bmatrix}
+                0 & a_2\sin(20^\circ) & 0 \\
+                0 & a_2\cos(20^\circ) + a_3 & a_3 \\
+                a_2\cos(50^\circ) + a_3\cos(70^\circ) & 0 & 0 \\
+            \end{bmatrix}
+        &= \begin{bmatrix}
+                0 & 0.1710 & 0 \\
+                0 & 0.9698 & 0.5 \\
+                0.4924 & 0 & 0 \\
+            \end{bmatrix}
+\end{aligned}
+\]
+
+对其进行 SVD 分解可得：
+\[
+{}^n J_v = U\, \Sigma\, V^{\top},\quad
+\Sigma = \begin{bmatrix}
+            1.1016 & 0 & 0 \\
+            0 & 0.4924 & 0 \\
+            0 & 0 & 0.0776
+        \end{bmatrix}
+\]
+
+由此可得：
+最小奇异值\(0.0776\) \\
+条件数\(\frac{\sigma_1}{\sigma_3} = 14.19\) \\
+可操作度数\(\sigma_1 \sigma_2 \sigma_3 = 0.0421\)
+
+
+(3)
+将\(\theta_1 = 5^\circ, \theta_2 = 30^\circ, \theta_3 = 40^\circ\)代入雅可比矩阵表达式得：
+\[
+\begin{aligned}
+{}^n J_v &= \begin{bmatrix}
+                0 & a_2\sin(40^\circ) & 0 \\
+                0 & a_2\cos(40^\circ) + a_3 & a_3 \\
+                a_2\cos(30^\circ) + a_3\cos(70^\circ) & 0 & 0 \\
+            \end{bmatrix}
+        &= \begin{bmatrix}
+                0 & 0.3214 & 0 \\
+                0 & 0.8830 & 0.5 \\
+                0.6040 & 0 & 0 \\
+            \end{bmatrix}
+\end{aligned}
+\]
+
+对其进行 SVD 分解可得：
+\[
+{}^n J_v = U\, \Sigma\, V^{\top},\quad
+\Sigma = \begin{bmatrix}
+            1.0535 & 0 & 0 \\
+            0 & 0.6040 & 0 \\
+            0 & 0 & 0.1525
+        \end{bmatrix}
+\]
+
+由此可得：
+最小奇异值\(0.1525\) \\
+条件数\(\frac{\sigma_1}{\sigma_3} = 6.91\) \\
+可操作度数\(\sigma_1 \sigma_2 \sigma_3 = 0.0971\)
+\newpage
+
+
+
 2.
 (1)
 基于D-H参数，求得各关节齐次变换矩阵如下：
