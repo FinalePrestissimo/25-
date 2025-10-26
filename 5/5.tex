@@ -201,7 +201,7 @@
     0 & 1 & 1
 \end{bmatrix}
 \]
-\vspace{2em}
+\vspace{5em}
 
 
 (2)
@@ -235,7 +235,7 @@
 最小奇异值\(0.0776\) \\
 条件数\(\frac{\sigma_1}{\sigma_3} = 14.19\) \\
 可操作度数\(\sigma_1 \sigma_2 \sigma_3 = 0.0421\)
-\vspace{2em}
+\vspace{5em}
 
 
 (3)
@@ -285,14 +285,8 @@
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
     {}^1 T_2 &= \begin{bmatrix}
-                    \cos(\theta_2 - 90^\circ) & 0 & -\sin(\theta_2 - 90^\circ) & 0 \\
-                    \sin(\theta_2 - 90^\circ) & 0 & \cos(\theta_2 - 90^\circ) & 0 \\
-                    0 & -1 & 0 & 0 \\
-                    0 & 0 & 0 & 1
-                \end{bmatrix} \\
-            &= \begin{bmatrix}
+                    \cos\theta_2 & 0 & -\sin\theta_2 & 0 \\
                     \sin\theta_2 & 0 & \cos\theta_2 & 0 \\
-                    -\cos\theta_2 & 0 & \sin\theta_2 & 0 \\
                     0 & -1 & 0 & 0 \\
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
@@ -315,15 +309,15 @@
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
     {}^0 T_2 &= \begin{bmatrix}
-                    \cos\theta_1\sin\theta_2 & \sin\theta_1 & \cos\theta_1\cos\theta_2 & 0 \\
-                    \sin\theta_1\sin\theta_2 & -\cos\theta_1 & \sin\theta_1\cos\theta_2 & 0 \\
-                    \cos\theta_2 & 0 & -\sin\theta_2 & d_1 \\
+                    \cos\theta_1\cos\theta_2 & \sin\theta_1 & -\cos\theta_1\sin\theta_2 & 0 \\
+                    \sin\theta_1\cos\theta_2 & -\cos\theta_1 & -\sin\theta_1\sin\theta_2 & 0 \\
+                    -\sin\theta_2 & 0 & -\cos\theta_2 & d_1 \\
                     0 & 0 & 0 & 1
                 \end{bmatrix} \\
     {}^0 T_3 &= \begin{bmatrix}
-                    c\theta_1\, s\theta_2\, c\theta_3 + s\theta_1\, s\theta_3 & -c\theta_1\, s\theta_2\, s\theta_3 + s\theta_1\, c\theta_3 & c\theta_1\, c\theta_2 & d_3\, c\theta_1\, c\theta_2 \\
-                    s\theta_1\, s\theta_2\, c\theta_3 - c\theta_1\, s\theta_3 & -s\theta_1\, s\theta_2\, s\theta_3 - c\theta_1\, c\theta_3 & s\theta_1\, c\theta_2 & d_3\, s\theta_1\, c\theta_2 \\
-                    c\theta_2\, c\theta_3 & -c\theta_2\, s\theta_3 & -s\theta_2 & d_1 - d_3\, s\theta_2 \\
+                    c\theta_1\, c\theta_2\, c\theta_3 + s\theta_1\, s\theta_3 & -c\theta_1\, c\theta_2\, s\theta_3 + s\theta_1\, c\theta_3 & -c\theta_1\, s\theta_2 & -d_3\, c\theta_1\, s\theta_2 \\
+                    s\theta_1\, c\theta_2\, c\theta_3 - c\theta_1\, s\theta_3 & -s\theta_1\, c\theta_2\, s\theta_3 - c\theta_1\, c\theta_3 & -s\theta_1\, s\theta_2 & -d_3\, s\theta_1\, s\theta_2 \\
+                    -s\theta_2\, c\theta_3 & s\theta_2\, s\theta_3 & -c\theta_2 & d_1 - d_3\, c\theta_2 \\
                     0 & 0 & 0 & 1
                 \end{bmatrix}
 \end{aligned}
@@ -339,7 +333,7 @@
                     -\sin\theta_1 \\ \cos\theta_1 \\ 0
                 \end{bmatrix} \quad
     {}^0 \xi_2 = \begin{bmatrix}
-                    \cos\theta_1 \cos\theta_2 \\ \sin\theta_1 \cos\theta_2 \\ -\sin\theta_2
+                    -\cos\theta_1 \sin\theta_2 \\ -\sin\theta_1 \sin\theta_2 \\ -\cos\theta_2
                 \end{bmatrix} \\
     {}^0 p_0 &= \begin{bmatrix}
                     0 \\ 0 \\ 0
@@ -351,9 +345,9 @@
                     0 \\ 0 \\ d_1
                 \end{bmatrix} \quad
     {}^0 p_3 = \begin{bmatrix}
-                    d_3 \cos\theta_1 \cos\theta_2 \\
-                    d_3 \sin\theta_1 \cos\theta_2 \\
-                    d_1 - d_3 \sin\theta_2
+                    -d_3 \cos\theta_1 \sin\theta_2 \\
+                    -d_3 \sin\theta_1 \sin\theta_2 \\
+                    d_1 - d_3 \cos\theta_2
                 \end{bmatrix} \\
 \end{aligned}
 \]
@@ -363,15 +357,15 @@
 \begin{aligned}
     {}^0 J_{v1} &= {}^0\xi_0 \times ({}^0 p_3 - {}^0 p_0)
                 = \begin{bmatrix}
-                    -d_3 \sin\theta_1 \cos\theta_2 \\
-                    d_3 \cos\theta_1 \cos\theta_2 \\
+                    d_3 \sin\theta_1 \sin\theta_2 \\
+                    -d_3 \cos\theta_1 \sin\theta_2 \\
                     0
                 \end{bmatrix} \\
     {}^0 J_{v2} &= {}^0\xi_1 \times ({}^0 p_3 - {}^0 p_1)
                 = \begin{bmatrix}
-                    -d_3 \cos\theta_1 \sin\theta_2 \\
-                    -d_3 \sin\theta_1 \sin\theta_2 \\
-                    -d_3 \cos\theta_2
+                    -d_3 \cos\theta_1 \cos\theta_2 \\
+                    -d_3 \sin\theta_1 \cos\theta_2 \\
+                    d_3 \sin\theta_2
                 \end{bmatrix} \\
     {}^0 J_{v3} &= {}^0\xi_2 \times ({}^0 p_3 - {}^0 p_2)
                 = \begin{bmatrix}
@@ -389,7 +383,7 @@
                 \end{bmatrix} \\
     {}^0 J_{\omega3} &= {}^0\xi_2
                 = \begin{bmatrix}
-                    \cos\theta_1 \cos\theta_2 \\ \sin\theta_1 \cos\theta_2 \\ -\sin\theta_2
+                    -\cos\theta_1 \sin\theta_2 \\ -\sin\theta_1 \sin\theta_2 \\ -\cos\theta_2
                 \end{bmatrix} \\
 \end{aligned}
 \]
@@ -398,13 +392,83 @@
 \[
 {}^0 J =
 \begin{bmatrix}
-    -d_3 \sin\theta_1 \cos\theta_2 & -d_3 \cos\theta_1 \sin\theta_2 & 0 \\
-    d_3 \cos\theta_1 \cos\theta_2 & -d_3 \sin\theta_1 \sin\theta_2 & 0 \\
-    0 & -d_3 \cos\theta_2 & 0 \\
-    0 & -\sin\theta_1 & \cos\theta_1 \cos\theta_2 \\
-    0 & \cos\theta_1 & \sin\theta_1 \cos\theta_2 \\
-    1 & 0 & -\sin\theta_2
+    d_3 \sin\theta_1 \sin\theta_2 & -d_3 \cos\theta_1 \cos\theta_2 & 0 \\
+    -d_3 \cos\theta_1 \sin\theta_2 & -d_3 \sin\theta_1 \cos\theta_2 & 0 \\
+    0 & d_3 \sin\theta_2 & 0 \\
+    0 & -\sin\theta_1 & -\cos\theta_1 \sin\theta_2 \\
+    0 & \cos\theta_1 & -\sin\theta_1 \sin\theta_2 \\
+    1 & 0 & -\cos\theta_2
 \end{bmatrix}
 \]
+\vspace{5em}
+
+
+(2)
+将\(\theta_1 = 60^\circ, \theta_2 = 100^\circ, \theta_3 = 50^\circ\)代入基座角速度雅可比分块表达式得：
+\[
+\begin{aligned}
+{}^0 J_{\omega}
+&= \begin{bmatrix}
+        0 & -\sin(60^\circ) & -\cos(60^\circ)\sin(100^\circ) \\
+        0 & \cos(60^\circ) & -\sin(60^\circ)\sin(100^\circ) \\
+        1 & 0 & -\cos(100^\circ)
+    \end{bmatrix}
+ = \begin{bmatrix}
+        0 & -0.8660 & -0.4924 \\
+        0 & 0.5000 & -0.8529 \\
+        1.0000 & 0 & 0.1736
+    \end{bmatrix}
+\end{aligned}
+\]
+
+对其进行 SVD 分解可得：
+\[
+{}^0 J_{\omega} = U\, \Sigma\, V^{\top},\quad
+\Sigma = \begin{bmatrix}
+            1.0834 & 0 & 0 \\
+            0 & 1.0000 & 0 \\
+            0 & 0 & 0.9090
+        \end{bmatrix}
+\]
+
+由此可得： \\
+最小奇异值\(0.9090\) \\
+条件数\(\frac{\sigma_1}{\sigma_3} = 1.19\) \\
+可操作度数\(\sigma_1 \sigma_2 \sigma_3 = 0.9848\)
+\vspace{5em}
+
+
+(3)
+将\(\theta_1 = 50^\circ, \theta_2 = 178^\circ, \theta_3 = 60^\circ\)代入基座角速度雅可比分块表达式得：
+\[
+\begin{aligned}
+{}^0 J_{\omega}
+&= \begin{bmatrix}
+        0 & -\sin(50^\circ) & -\cos(50^\circ)\sin(178^\circ) \\
+        0 & \cos(50^\circ) & -\sin(50^\circ)\sin(178^\circ) \\
+        1 & 0 & -\cos(178^\circ)
+    \end{bmatrix}
+ = \begin{bmatrix}
+        0 & -0.7660 & -0.0224 \\
+        0 & 0.6428 & -0.0267 \\
+        1.0000 & 0 & 0.9994
+    \end{bmatrix}
+\end{aligned}
+\]
+
+对其进行 SVD 分解可得：
+\[
+{}^0 J_{\omega} = U\, \Sigma\, V^{\top},\quad
+\Sigma = \begin{bmatrix}
+            1.4140 & 0 & 0 \\
+            0 & 1.0000 & 0 \\
+            0 & 0 & 0.0247
+        \end{bmatrix}
+\]
+
+由此可得： \\
+最小奇异值\(0.0247\) \\
+条件数\(\frac{\sigma_1}{\sigma_3} = 57.29\) \\
+可操作度数\(\sigma_1 \sigma_2 \sigma_3 = 0.0349\)
 
 \end{document} 
