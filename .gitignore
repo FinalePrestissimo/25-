@@ -6,3 +6,5 @@
 *.xdv
 
 **/out
+
+.vscode/
