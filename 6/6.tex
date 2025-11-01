@@ -1,0 +1,164 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{fontspec} % XeLaTeX 字体支持
+\usepackage{listings}
+\usepackage{xcolor}
+
+% 等宽字体（可根据系统调整）
+\setmonofont{DejaVu Sans Mono}
+
+% 取消段首缩进
+\setlength{\parindent}{0pt}
+
+% listings 配置
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue}\bfseries,
+	commentstyle=\color{green}\itshape,
+	stringstyle=\color{purple},
+	numbers=left,
+	numberstyle=\tiny,
+	breaklines=true,
+	tabsize=2,
+	frame=single,
+	captionpos=b,
+	columns=fullflexible
+}
+
+\begin{document}
+
+1.
+空间3R肘机械臂各齐次变换矩阵有：
+\[
+\begin{aligned}
+    {}^0 T_1 &= \begin{bmatrix}
+                    \cos\theta_1 & 0 & -\sin\theta_1 & 0 \\
+                    \sin\theta_1 & 0 & \cos\theta_1 & 0 \\
+                    0 & -1 & 0 & d_1 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^1 T_2 &= \begin{bmatrix}
+                    \cos\theta_2 & -\sin\theta_2 & 0 & a_2\cos\theta_2 \\
+                    \sin\theta_2 & \cos\theta_2 & 0 & a_2\sin\theta_2 \\
+                    0 & 0 & 1 & 0 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix} \\
+    {}^2 T_3 &= \begin{bmatrix}
+                    \cos\theta_3 & -\sin\theta_3 & 0 & a_3\cos\theta_3 \\
+                    \sin\theta_3 & \cos\theta_3 & 0 & a_3\sin\theta_3 \\
+                    0 & 0 & 1 & 0 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix}
+\end{aligned}
+\]
+
+故位置级正运动学方程为：
+\[
+{}^0 T_3 = {}^0 T_1 \cdot {}^1 T_2 \cdot {}^2 T_3
+        = \begin{bmatrix}
+            \cos\theta_1 \cos(\theta_2 + \theta_3) & -\cos\theta_1 \sin(\theta_2 + \theta_3) & -\sin\theta_1 & x \\
+            \sin\theta_1 \cos(\theta_2 + \theta_3) & -\sin\theta_1 \sin(\theta_2 + \theta_3) & \cos\theta_1 & y \\
+            -\sin(\theta_2 + \theta_3) & -\cos(\theta_2 + \theta_3) & 0 & z \\
+            0 & 0 & 0 & 1
+        \end{bmatrix}
+\]
+
+其中位置向量为：
+\[
+    {}^0 P_3 = \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix}
+            = \begin{bmatrix}
+                \cos\theta_1 (a_2 \cos\theta_2 + a_3 \cos(\theta_2 + \theta_3)) \\
+                \sin\theta_1 (a_2 \cos\theta_2 + a_3 \cos(\theta_2 + \theta_3)) \\
+                d_1 - a_2 \sin\theta_2 - a_3 \sin(\theta_2 + \theta_3)
+            \end{bmatrix}
+\]
+
+\vspace{3em}
+
+
+下面计算圆轨迹参数方程：
+
+由圆心及轨迹上点的坐标计算圆半径为：
+\[
+r = \|P_0 - O_c\| = \sqrt{0.2^2 + 0.1^2 + 0.2^2} = 0.3
+\]
+
+构建圆弧的局部坐标系。设 \(x\) 沿 \(P_0 - O_c\) 方向：
+\[
+i = \frac{P_0 - O_c}{\|P_0 - O_c\|} 
+    = \begin{bmatrix}
+        0.6667 \\ 0.3333 \\ 0.6667
+    \end{bmatrix}
+\]
+
+为确定圆弧平面上的 \(j\) 矢量，利用 \(P_f\) 构造圆弧平面的法向量：
+\[
+n = (P_0 - O_c) \times (P_f - O_c) 
+    = \begin{bmatrix}
+        0.2 \\ 0.1 \\ 0.2
+    \end{bmatrix} \times \begin{bmatrix}
+        0.1 \\ -0.2 \\ -0.2
+    \end{bmatrix}
+    = \begin{bmatrix}
+        0.02 \\ 0.06 \\ -0.05
+    \end{bmatrix}
+\]
+
+归一化得到 \(k\) 矢量（垂直于圆弧平面）：
+\[
+k = \frac{n}{\|n\|} 
+    = \frac{1}{\sqrt{0.02^2 + 0.06^2 + 0.05^2}} \begin{bmatrix}
+        0.02 \\ 0.06 \\ -0.05
+    \end{bmatrix}
+    = \begin{bmatrix}
+        0.2481 \\ 0.7442 \\ -0.6202
+    \end{bmatrix}
+\]
+
+最后由右手系法则得：
+\[
+j = k \times i 
+    = \begin{bmatrix}
+        0.7029 \\ -0.5789 \\ -0.4136
+    \end{bmatrix}
+\]
+
+从 \(P_0\) 到 \(P_f\) 的圆心角为：
+\[
+\phi_f = \arccos\left(\frac{(P_0 - O_c) \cdot (P_f - O_c)}{\|P_0 - O_c\| \|P_f - O_c\|}\right) = 116.39^\circ
+\]
+
+圆轨迹参数方程为：
+\[
+P(\lambda) = O_c + r(\cos(\phi_0 + \lambda (\phi_f - \phi_0)) \cdot i + \sin(\phi_0 + \lambda (\phi_f - \phi_0)) \cdot j) \quad \lambda \in [0, 1]
+\]
+
+\vspace{3em}
+
+
+下面将参数时序化：
+
+采用三次多项式进行时间规划：
+\[
+\lambda(t) = a_0 + a_1 t + a_2 t^2 + a_3 t^3
+\]
+
+满足边界条件：\(\lambda(0)=0\)，\(\dot{\lambda}(0)=0\)，\(\lambda(t_f)=1\)，\(\dot{\lambda}(t_f)=0\)。
+确定为：
+\[
+\lambda(t) = 3\left(\frac{t}{t_f}\right)^2 - 2\left(\frac{t}{t_f}\right)^3
+\]
+
+
+\vspace{3em}
+
+附Matlab程序：
+\lstinputlisting[language=Matlab]{asset/trajectory_planning.m}
+
+\end{document}
